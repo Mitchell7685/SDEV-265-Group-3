@@ -84,10 +84,10 @@ To get the project up and running follow these steps.
     ```
 * Activate python virtual environment
     ```sh
-    # On Linux/macOS use:
-    source venv/bin/activate
     # On Windows use: 
     venv\Scripts\activate
+    # On Linux/macOS use:
+    source venv/bin/activate
     ```
 * Install dependencies
     ```sh
