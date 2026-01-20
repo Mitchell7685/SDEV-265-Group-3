@@ -138,11 +138,11 @@ Once the server is running, you can access the default homepage.
 ## Contact
 
 Team
-- Collin Congleton [Collin's LinkedIn](https://www.linkedin.com/in/) - [Collin's GitHub](https://github.com/Satori15)
-- Jacob Lee [Jacob's LinkedIn](https://www.linkedin.com/in/) - [Jacob's GitHub](https://github.com/)
-- Mitchell Kehler [Mitchell's LinkedIn](https://www.linkedin.com/in/) - [Mitchell's GitHub](https://github.com/Mitchell7685)
-- Stephen Littman [Stephen's LinkedIn](https://www.linkedin.com/in/stephen-littman/) - [Stephen's GitHub](https://github.com/anarchking)
-- Yverson Louis [Yverson's LinkedIn](https://www.linkedin.com/in/) - [Yverson's GitHub](https://github.com/)
+- Collin Congleton - [Collin's LinkedIn](https://www.linkedin.com/in/) - [Collin's GitHub](https://github.com/Satori15)
+- Jacob Lee - [Jacob's LinkedIn](https://www.linkedin.com/in/) - [Jacob's GitHub](https://github.com/)
+- Mitchell Kehler - [Mitchell's LinkedIn](https://www.linkedin.com/in/) - [Mitchell's GitHub](https://github.com/Mitchell7685)
+- Stephen Littman - [Stephen's LinkedIn](https://www.linkedin.com/in/stephen-littman/) - [Stephen's GitHub](https://github.com/anarchking)
+- Yverson Louis - [Yverson's LinkedIn](https://www.linkedin.com/in/) - [Yverson's GitHub](https://github.com/)
 
 
 Project Link - [Repo Link](https://github.com/Mitchell7685/SDEV-265-Group-3/)
