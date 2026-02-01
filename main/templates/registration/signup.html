@@ -1,0 +1,21 @@
+{% extends 'layout.html' %}
+
+{% block title %}Sign Up{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-center align-items-center" style="min-height: 60vh;">
+    <div class="card shadow p-5" style="width: 400px;">
+        <h2 class="text-center mb-4">Create Account</h2>
+        
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-success w-100 btn-lg">Create Account</button>
+        </form>
+
+        <div class="text-center mt-3">
+            <p>Already have an account? <a href="{% url 'login' %}">Sign in</a></p>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'jazzmin',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -116,3 +117,51 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/6.0/howto/static-files/
 
 STATIC_URL = 'static/'
+
+
+LOGIN_REDIRECT_URL = 'home'
+LOGOUT_REDIRECT_URL = 'login'
+
+
+
+# JAZZMIN SETTINGS (Theme & Layout)
+JAZZMIN_SETTINGS = {
+    # Titles and Branding
+    "site_title": "Chore Tracker Admin",
+    "site_header": "Chore Tracking App",
+    "site_brand": "Chore Tracker App",
+    "welcome_sign": "Welcome to the Command Center",
+    "topmenu_links": [
+        {"name": "Return to User Dashboard",  "url": "home", "permissions": ["auth.view_user"]},
+    ],
+    # The Menu Icons (FontAwesome 5)
+    "icons": {
+        # Default Auth apps
+        "auth": "fas fa-users-cog",
+        "auth.user": "fas fa-user",
+        "auth.Group": "fas fa-users",
+        
+        # Custom Models
+        "main.Chore": "fas fa-broom",                
+        "main.AssignedChore": "fas fa-clipboard-check", 
+        "main.UserStats": "fas fa-chart-line",
+    },
+
+    # Sidebar Organization
+    # This forces 'main' app to appear at the top of the sidebar
+    "order_with_respect_to": ["main", "auth"],
+
+    # User Menu (Link back to Dashboard)
+    "usermenu_links": [
+        {"name": "User Dashboard", "url": "home", "icon": "fas fa-home"}, 
+    ],
+
+    # UI Builder
+    # Theme Builder button in the admin
+    "show_ui_builder": True, 
+}
+
+JAZZMIN_UI_TWEAKS = {
+    "theme": "cyborg",   # flatly, darkly, slate, solar, cyborg
+    #"theme": "darkly", # Dark Mode
+}

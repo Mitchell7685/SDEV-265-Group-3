@@ -1,0 +1,68 @@
+Category,Chore Name,Frequency,Difficulty,Default Points
+Kitchen,Wipe down counters and surfaces,Daily,2,50
+Kitchen,Load and unload dishwasher,Daily,3,75
+Kitchen,Hand wash pots and pans,Daily,4,100
+Kitchen,Wipe down stovetop,Daily,3,75
+Kitchen,Clean out refrigerator (expired food),Weekly,3,75
+Kitchen,Deep clean refrigerator interior,Monthly,6,250
+Kitchen,Clean microwave interior,Weekly,2,50
+Kitchen,Deep clean oven,Quarterly,8,400
+Kitchen,Degrease range hood filter,Monthly,5,150
+Kitchen,Sharpen kitchen knives,Monthly,3,75
+Kitchen,Descale coffee maker/kettle,Monthly,3,75
+Kitchen,Sweep kitchen floor,Daily,2,50
+Kitchen,Mop kitchen floor,Weekly,5,150
+Kitchen,Empty kitchen trash,Daily,2,50
+Bathroom,Wipe down sink and vanity,Daily,2,50
+Bathroom,Clean mirror,Weekly,1,25
+Bathroom,Scrub toilet bowl,Weekly,4,100
+Bathroom,Wipe down toilet exterior,Weekly,3,75
+Bathroom,Scrub shower walls and tub,Weekly,6,250
+Bathroom,Clean shower glass/curtain,Weekly,4,100
+Bathroom,Wash bath mats and towels,Weekly,3,75
+Bathroom,Unclog/Clean drains (hair removal),Monthly,5,150
+Bathroom,Reseal grout,Yearly,8,400
+Bedroom,Make the bed,Daily,1,25
+Bedroom,Change bed linens/sheets,Weekly,4,100
+Bedroom,Flip or rotate mattress,Quarterly,6,250
+Bedroom,Organize closet/drawers,Monthly,5,150
+Bedroom,Declutter nightstands,Weekly,2,50
+Living Area,Pick up clutter/toys,Daily,2,50
+Living Area,Dust surfaces and electronics,Weekly,3,75
+Living Area,Vacuum carpets and rugs,Weekly,4,100
+Living Area,Vacuum under furniture,Monthly,6,250
+Living Area,Dust ceiling fans and light fixtures,Monthly,4,100
+Living Area,Wipe down baseboards,Monthly,5,150
+Living Area,Clean interior windows,Monthly,5,150
+Living Area,Clean exterior windows,Quarterly,8,400
+Living Area,Clean blinds/curtains,Quarterly,6,250
+Laundry,Sort dirty laundry,Weekly,2,50
+Laundry,Wash and dry clothes,Weekly,3,75
+Laundry,Fold and put away clothes,Weekly,5,150
+Laundry,Iron or steam clothing,As Needed,6,250
+Laundry,Hand wash delicates,As Needed,5,150
+Laundry,Clean dryer lint trap,Every Load,1,25
+Laundry,Clean washing machine filter/drum,Monthly,4,100
+General Maintenance,Replace HVAC/Furnace filter,Quarterly,2,50
+General Maintenance,Test smoke/CO detectors,Monthly,1,25
+General Maintenance,Replace light bulbs,As Needed,2,50
+General Maintenance,Wipe down door handles/light switches,Weekly,1,25
+General Maintenance,Touch up paint scuffs,Yearly,4,100
+General Maintenance,Deep clean carpets (Shampoo),Yearly,9,450
+Outdoor,Take out trash and recycling bins,Weekly,3,75
+Outdoor,Sweep porch/deck/patio,Weekly,3,75
+Outdoor,Mow the lawn,Weekly (Seasonal),7,300
+Outdoor,Weed the garden,Monthly,6,250
+Outdoor,Rake leaves,Seasonal,7,300
+Outdoor,Water outdoor plants/lawn,Weekly,2,50
+Outdoor,Clean gutters,Seasonal,9,450
+Outdoor,Power wash siding/deck,Yearly,8,400
+Outdoor,Shovel snow,Seasonal,9,450
+Outdoor,Clean grill/BBQ,Seasonal,7,300
+Admin & Misc,Sort and process mail,Daily,1,25
+Admin & Misc,Pay bills and budget,Monthly,4,100
+Admin & Misc,Meal planning,Weekly,5,150
+Admin & Misc,Grocery shopping,Weekly,6,250
+Admin & Misc,Pet care (feed/water),Daily,1,25
+Admin & Misc,Clean pet litter/cage/yard,Daily,5,150
+Admin & Misc,Groom pets (brush/wash),Weekly,6,250

@@ -1,0 +1,51 @@
+{% extends 'layout.html' %}
+
+{% block title %}Dashboard - Chore Tracking App{% endblock %}
+
+{% block content %}
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1>Dashboard</h1>
+    </div>
+
+    <div class="row">
+        <div class="col-md-4">
+            <div class="card bg-primary text-white shadow mb-3">
+                <div class="card-body">
+                    <h3>{{ user.username|title }}</h3>
+                    {% if stats %}
+                        <h1 class="display-3">{{ stats.reward_points }}</h1>
+                        <p class="lead">Reward Points</p>
+                        <hr>
+                        <p class="mb-0">XP: {{ stats.experience_points }}</p>
+                    {% else %}
+                        <p>No stats found.</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-8">
+            <div class="card shadow">
+                <div class="card-header bg-white">
+                    <h4 class="mb-0">Active Assignments</h4>
+                </div>
+                <ul class="list-group list-group-flush">
+                    {% for task in chores %}
+                        <li class="list-group-item d-flex justify-content-between align-items-center p-3">
+                            <div>
+                                <h5 class="mb-1">{{ task.chore_definition.chore_name }}</h5>
+                                <small class="text-muted">Due: {{ task.date_due|default:"ASAP" }}</small>
+                            </div>
+                            <span class="badge bg-success rounded-pill p-2">+{{ task.points_value }} XP</span>
+                        </li>
+                    {% empty %}
+                        <li class="list-group-item text-center p-5 text-muted">
+                            <h5>No active assignments at this time.</h5>
+                            <p>You are free to relax.</p>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+{% endblock %}
