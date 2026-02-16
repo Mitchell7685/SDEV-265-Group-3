@@ -133,6 +133,7 @@ JAZZMIN_SETTINGS = {
     "welcome_sign": "Welcome to the Command Center",
     "topmenu_links": [
         {"name": "Return to User Dashboard",  "url": "home", "permissions": ["auth.view_user"]},
+        {"name": "Generate Schedule", "url": "generate_schedule", "icon": "fas fa-cogs"},
     ],
     # The Menu Icons (FontAwesome 5)
     "icons": {

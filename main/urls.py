@@ -11,4 +11,7 @@ urlpatterns = [
 
     # Our Custom Signup URL
     path("accounts/signup/", views.signup, name="signup"),
+
+    # Admin Schedule Generator
+    path('generate-schedule/', views.generate_schedule, name='generate_schedule'),
 ]
