@@ -5,7 +5,7 @@ from .models import Chore, AssignedChore, UserStats
 # Chore Definition List (Menu)
 @admin.register(Chore)
 class ChoreAdmin(admin.ModelAdmin):
-    list_display = ('chore_name', 'category', 'difficulty', 'default_points')
+    list_display = ('chore_name', 'category', 'frequency', 'difficulty', 'default_points')
     list_filter = ('category', 'frequency', 'difficulty')
     search_fields = ('chore_name',)
 
