@@ -14,4 +14,7 @@ urlpatterns = [
 
     # Admin Schedule Generator
     path('generate-schedule/', views.generate_schedule, name='generate_schedule'),
+
+    # Admin Delete Chore
+    path('admin-delete-chore/<int:chore_id>/', views.admin_delete_chore, name='admin_delete_chore'),
 ]
