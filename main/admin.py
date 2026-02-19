@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Chore, AssignedChore, UserStats
+from .models import Chore, AssignedChore, UserStats, ChoreExtensionRequest
 
 
 # Chore Definition List (Menu)
@@ -23,4 +23,13 @@ class AssignedChoreAdmin(admin.ModelAdmin):
 @admin.register(UserStats)
 class UserStatsAdmin(admin.ModelAdmin):
     list_display = ('user', 'skill_level', 'experience_points', 'reward_points')
+
+
+# Extension Request Manager
+@admin.register(ChoreExtensionRequest)
+class ChoreExtensionRequestAdmin(admin.ModelAdmin):
+    list_display = ('assigned_chore', 'requested_by', 'requested_due_date', 'status', 'requested_at', 'reviewed_by')
+    list_filter = ('status', 'requested_at', 'reviewed_by')
+    search_fields = ('requested_by__username', 'assigned_chore__chore_definition__chore_name')
+    readonly_fields = ('requested_at', 'reviewed_at')
     

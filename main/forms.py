@@ -38,3 +38,20 @@ class ScheduleGeneratorForm(forms.Form):
         initial=False,
         label="Include Admins in Assignments"
     )
+
+# Request extension
+class ExtensionRequestForm(forms.Form):
+    requested_due_date = forms.DateTimeField(
+        label="Requested New Due Date and Time",
+        help_text="When do you need this completed by?",
+        widget=forms.DateTimeInput(attrs={
+            'type': 'datetime-local',
+            'class': 'form-control'
+        })
+    )
+    reason = forms.CharField(
+        widget=forms.Textarea(attrs={'rows': 3, 'class': 'form-control'}),
+        required=False,
+        label="Reason for Extension",
+        help_text="Optional: Provide a reason for your request"
+    )
