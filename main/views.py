@@ -184,3 +184,27 @@ def admin_delete_chore(request, chore_id):
     # Redirect back to the AssignedChore admin list
     return redirect('admin:main_assignedchore_changelist')
     
+
+@login_required
+def complete_chore(request, assignment_id):
+    if request.method == "POST":
+        # Get the chore, ensure it belongs to the user trying to complete it
+        assignment = get_object_or_404(AssignedChore, id=assignment_id, assigned_to=request.user)
+        
+        # Prevent double-clicking or refreshing from awarding points twice
+        if not assignment.is_completed:
+            assignment.is_completed = True
+            assignment.save()
+            
+            # Get the user's stats or create if they don't exist yet
+            stats, created = UserStats.objects.get_or_create(user=request.user)
+            
+            # Add the XP and check for a level up
+            leveled_up = stats.add_experience(assignment.points_value)
+            
+            if leveled_up:
+                messages.success(request, f"Great Work! You earned {assignment.points_value} XP. New Skill Level Reached! You are now Level {stats.skill_level}!")
+            else:
+                messages.success(request, f"Great Work! You earned {assignment.points_value} XP.")
+                
+    return redirect('home')

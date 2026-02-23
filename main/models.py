@@ -17,6 +17,25 @@ class UserStats(models.Model):
     experience_points = models.IntegerField(default=0)
     reward_points = models.IntegerField(default=0)
     
+    def add_experience(self, points):
+        # Adds XP and calculates if the user leveled up.
+        self.experience_points += points
+        
+        # Calculate the users level based on their new total XP
+        new_level = 1
+        while self.experience_points >= (new_level * 50 * (new_level + 1)):
+            new_level += 1
+            
+        # Check if they leveled up
+        leveled_up = False
+        if new_level > self.skill_level:
+            self.skill_level = new_level
+            leveled_up = True
+            
+        self.save()
+        # Returns True if user leveled up
+        return leveled_up 
+
     def __str__(self):
         return self.name
     
@@ -24,6 +43,7 @@ class UserStats(models.Model):
     class Meta:
         verbose_name = "User Stats"
         verbose_name_plural = "User Stats"
+
 
 # Auto-create UserStats when a User signs up
 @receiver(post_save, sender=User)
@@ -47,6 +67,7 @@ class Chore(models.Model):
     
     def __str__(self):
         return self.chore_name
+
 
 class AssignedChore(models.Model):
     # Attributes

@@ -17,4 +17,7 @@ urlpatterns = [
 
     # Admin Delete Chore
     path('admin-delete-chore/<int:chore_id>/', views.admin_delete_chore, name='admin_delete_chore'),
+    
+    # User Complete Chore
+    path('complete-chore/<int:assignment_id>/', views.complete_chore, name='complete_chore'),
 ]

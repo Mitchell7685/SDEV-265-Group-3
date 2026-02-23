@@ -36,7 +36,40 @@
                                 <h5 class="mb-1">{{ task.chore_definition.chore_name }}</h5>
                                 <small class="text-muted">Due: {{ task.date_due|default:"ASAP" }}</small>
                             </div>
-                            <span class="badge bg-success rounded-pill p-2">+{{ task.points_value }} XP</span>
+                            
+                            <div class="d-flex align-items-center gap-3">
+                                <span class="badge bg-success rounded-pill p-2">+{{ task.points_value }} XP</span>
+                                
+                                <button type="button" class="btn btn-outline-success btn-sm rounded-pill" data-bs-toggle="modal" data-bs-target="#completeModal-{{ task.id }}">
+                                    ✓ Complete
+                                </button>
+                            </div>
+
+                            <div class="modal fade" id="completeModal-{{ task.id }}" tabindex="-1" aria-labelledby="completeModalLabel-{{ task.id }}" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered">
+                                    <div class="modal-content border-success">
+                                        
+                                        <div class="modal-header bg-success text-white">
+                                            <h5 class="modal-title fw-bold" id="completeModalLabel-{{ task.id }}">Confirm Completion</h5>
+                                            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        
+                                        <div class="modal-body text-dark fs-5 text-start">
+                                            Are you sure that the assignment <strong>"{{ task.chore_definition.chore_name }}"</strong> is 100% complete?
+                                        </div>
+                                        
+                                        <div class="modal-footer d-flex justify-content-between">
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                                            
+                                            <form method="POST" action="{% url 'complete_chore' task.id %}">
+                                                {% csrf_token %}
+                                                <button type="submit" class="btn btn-success fw-bold shadow">Yes, 100% Complete!</button>
+                                            </form>
+                                        </div>
+                                        
+                                    </div>
+                                </div>
+                            </div>
                         </li>
                     {% empty %}
                         <li class="list-group-item text-center p-5 text-muted">
