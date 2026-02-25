@@ -1,0 +1,45 @@
+{% extends "admin/change_list.html" %}
+
+{% block content %}
+    {{ block.super }}
+
+    <div class="modal fade" id="deleteModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content border-danger">
+                
+                <div class="modal-header bg-danger text-white">
+                    <h5 class="modal-title fw-bold">Confirm Deletion</h5>
+                    <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                
+                <div class="modal-body fs-5 text-dark">
+                    Are you sure you want to Delete the assignment for <strong id="modalChoreName"></strong>?
+                </div>
+                
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                    <form id="deleteForm" method="POST" action="">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-danger shadow">Yes, Delete</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const modal = document.getElementById('deleteModal');
+            document.body.appendChild(modal);
+        });
+
+
+        function setModalData(choreId, choreName) {
+            document.getElementById('modalChoreName').innerText = choreName;
+            document.getElementById('deleteForm').action = "/admin-delete-chore/" + choreId + "/";
+        }
+    </script>
+
+{% endblock %}

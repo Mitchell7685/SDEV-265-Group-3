@@ -3,23 +3,177 @@
 {% block title %}Generate Schedule{% endblock %}
 
 {% block content %}
-<div class="container mt-5">
-    <div class="card shadow">
-        <div class="card-header bg-primary text-white">
-            <h3 class="mb-0">Generate Schedule</h3>
-        </div>
-        <div class="card-body">
-            <form method="POST">
-                {% csrf_token %}
-                
-                {{ form.as_p }}
-                
-                <div class="mt-4">
-                    <button type="submit" class="btn btn-success btn-lg">Create Schedule</button>
-                    <a href="{% url 'admin:index' %}" class="btn btn-secondary btn-lg">Cancel</a>
+<div class="container-fluid mt-4 mb-5">
+    
+    {% if draft_ids %}
+        <div class="card shadow border-warning">
+            <div class="card-header bg-warning text-dark d-flex justify-content-between align-items-center">
+                <h4 class="mb-0 fw-bold">Review Generated Schedule</h4>
+            </div>
+            <div class="card-body">
+                <div class="alert alert-info">
+                    Make any necessary adjustments below. Check the "Remove" box to delete a chore completely from this batch before saving.
                 </div>
-            </form>
+
+                <form method="POST">
+                    {% csrf_token %}
+                    {{ formset.management_form }}
+                    
+                    <div class="table-responsive">
+                        <table class="table table-hover align-middle">
+                            <thead class="table-light">
+                                <tr>
+                                    <th>Chore</th>
+                                    <th>Assigned To</th>
+                                    <th>Points</th>
+                                    <th>Date Due</th>
+                                    <th class="text-danger text-center">Remove</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for form in formset %}
+                                <tr>
+                                    {{ form.id }} 
+                                    <td>{{ form.chore_definition }}</td>
+                                    <td>{{ form.assigned_to }}</td>
+                                    <td>{{ form.points_value }}</td>
+                                    <td>{{ form.date_due }}</td>
+                                    <td class="text-center align-middle">{{ form.DELETE }}</td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="d-flex justify-content-between mt-3">
+                        <button type="submit" name="action" value="cancel" class="btn btn-outline-danger btn-lg" formnovalidate>
+                            Discard Schedule
+                        </button>
+                        <button type="submit" name="action" value="confirm" class="btn btn-success btn-lg shadow">
+                            Confirm Schedule
+                        </button>
+                    </div>
+                </form>
+            </div>
         </div>
-    </div>
+
+    {% else %}
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card shadow border-primary">
+                    <div class="card-header bg-primary text-white">
+                        <h3 class="mb-0">Schedule Generator</h3>
+                    </div>
+                    <div class="card-body">
+                        
+                        <form method="POST">
+                            {% csrf_token %}
+                            
+                            <div class="mb-4">
+                                <strong>{{ form.duration_days.label_tag }}</strong>
+                                {{ form.duration_days }}
+                                <small class="text-muted">{{ form.duration_days.help_text }}</small>
+                            </div>
+                            
+                            <hr>
+
+                            <div class="mb-3 form-check form-switch fs-5">
+                                {{ form.include_all_users }}
+                                <label class="form-check-label fw-bold" for="{{ form.include_all_users.id_for_label }}">
+                                    {{ form.include_all_users.label }}
+                                </label>
+                            </div>
+
+                            <div id="advanced-targeting" class="card p-3 bg-light mb-4" style="display: none;">
+                                <h5 class="text-primary mb-3">Target Specific People or Groups</h5>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <strong>{{ form.specific_users.label_tag }}</strong>
+                                        {{ form.specific_users }}
+                                        <small class="text-muted">Hold CTRL/CMD to select multiple.</small>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <strong>{{ form.specific_groups.label_tag }}</strong>
+                                        {{ form.specific_groups }}
+                                        <small class="text-muted">Hold CTRL/CMD to select multiple.</small>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <hr>
+
+                            <h5 class="text-primary mb-3 mt-4">Select Frequencies & Quantities per User</h5>
+                            <div class="row mb-4">
+                                {% for freq in form.get_frequency_fields %}
+                                    <div class="col-md-6 mb-2">
+                                        <div class="d-flex align-items-center bg-light p-2 rounded border">
+                                            <div class="form-check me-auto">
+                                                {{ freq.checkbox }}
+                                                <label class="form-check-label fw-bold" for="{{ freq.checkbox.id_for_label }}">
+                                                    {{ freq.name }}
+                                                </label>
+                                            </div>
+                                            <div class="d-flex align-items-center">
+                                                <span class="me-2 text-muted small">Qty:</span>
+                                                {{ freq.count }}
+                                            </div>
+                                        </div>
+                                    </div>
+                                {% endfor %}
+                            </div>
+
+                            <div class="mt-4">
+                                <button type="submit" name="action" value="generate" class="btn btn-primary btn-lg w-100 shadow">
+                                    Generate Schedule
+                                </button>
+                            </div>
+                        </form>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+
 </div>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        
+        const includeAllCheckbox = document.getElementById("{{ form.include_all_users.id_for_label }}");
+        const advancedBox = document.getElementById("advanced-targeting");
+
+        function toggleTargeting() {
+            if (includeAllCheckbox.checked) {
+                advancedBox.style.display = "none";
+            } else {
+                advancedBox.style.display = "block";
+            }
+        }
+
+        if (includeAllCheckbox) {
+            includeAllCheckbox.addEventListener("change", toggleTargeting);
+            toggleTargeting();
+        }
+
+
+        const freqCheckboxes = document.querySelectorAll('.freq-checkbox');
+        
+        freqCheckboxes.forEach(function(checkbox) {
+            checkbox.addEventListener('change', function() {
+                const countInputId = this.id.replace('chk_', 'count_');
+                const countInput = document.getElementById(countInputId);
+                
+                if (countInput) {
+                    if (this.checked) {
+                        countInput.removeAttribute('disabled');
+                        countInput.setAttribute('required', 'required');
+                    } else {
+                        countInput.setAttribute('disabled', 'true');
+                        countInput.removeAttribute('required');
+                    }
+                }
+            });
+        });
+    });
+</script>
 {% endblock %}

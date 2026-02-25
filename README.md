@@ -1,4 +1,4 @@
-# Chore application name here
+# TidyTracker
 
 <a name="readme-top"></a>
 
