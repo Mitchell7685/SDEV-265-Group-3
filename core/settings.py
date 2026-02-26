@@ -131,10 +131,21 @@ JAZZMIN_SETTINGS = {
     "site_header": "Chore Tracking App",
     "site_brand": "Chore Tracker App",
     "welcome_sign": "Welcome to the Command Center",
-    "topmenu_links": [
-        {"name": "Return to User Dashboard",  "url": "home", "permissions": ["auth.view_user"]},
-        {"name": "Generate Schedule", "url": "generate_schedule", "icon": "fas fa-cogs"},
-    ],
+    "custom_links": {
+        "main": [
+            {
+                "name": "Generate Schedule", 
+                "url": "generate_schedule", # This must match the name in your urls.py
+                "icon": "fas fa-calendar-plus",
+            },
+            {
+                "name": "User Dashboard", 
+                "url": "home", # This must match the name in your urls.py
+                "icon": "fas fa-arrow-left",
+            }
+        ]
+    },
+
     # The Menu Icons (FontAwesome 5)
     "icons": {
         # Default Auth apps
