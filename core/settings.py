@@ -118,6 +118,9 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
+STATICFILES_DIRS = [
+    BASE_DIR / "static",
+]
 
 LOGIN_REDIRECT_URL = 'home'
 LOGOUT_REDIRECT_URL = 'login'
@@ -127,14 +130,27 @@ LOGOUT_REDIRECT_URL = 'login'
 # JAZZMIN SETTINGS (Theme & Layout)
 JAZZMIN_SETTINGS = {
     # Titles and Branding
-    "site_title": "Chore Tracker Admin",
-    "site_header": "Chore Tracking App",
-    "site_brand": "Chore Tracker App",
-    "welcome_sign": "Welcome to the Command Center",
-    "topmenu_links": [
-        {"name": "Return to User Dashboard",  "url": "home", "permissions": ["auth.view_user"]},
-        {"name": "Generate Schedule", "url": "generate_schedule", "icon": "fas fa-cogs"},
-    ],
+    "site_title": "TidyTracker Admin",
+    "site_header": "TidyTracker",
+    "site_brand": "TidyTracker",
+    "welcome_sign": "Welcome to the TidyTracker Command Center",
+    "custom_links": {
+        "main": [
+            {
+                "name": "Generate Schedule", 
+                "url": "generate_schedule", # This must match the name in your urls.py
+                "icon": "fas fa-calendar-plus",
+            },
+            {
+                "name": "User Dashboard", 
+                "url": "home", # This must match the name in your urls.py
+                "icon": "fas fa-arrow-left",
+            }
+        ]
+    },
+
+    "custom_js": "js/admin_custom.js",  # JavaScript for admin view customizations
+
     # The Menu Icons (FontAwesome 5)
     "icons": {
         # Default Auth apps
