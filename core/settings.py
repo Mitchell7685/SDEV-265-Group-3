@@ -118,6 +118,9 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
+STATICFILES_DIRS = [
+    BASE_DIR / "static",
+]
 
 LOGIN_REDIRECT_URL = 'home'
 LOGOUT_REDIRECT_URL = 'login'
@@ -127,10 +130,10 @@ LOGOUT_REDIRECT_URL = 'login'
 # JAZZMIN SETTINGS (Theme & Layout)
 JAZZMIN_SETTINGS = {
     # Titles and Branding
-    "site_title": "Chore Tracker Admin",
-    "site_header": "Chore Tracking App",
-    "site_brand": "Chore Tracker App",
-    "welcome_sign": "Welcome to the Command Center",
+    "site_title": "TidyTracker Admin",
+    "site_header": "TidyTracker",
+    "site_brand": "TidyTracker",
+    "welcome_sign": "Welcome to the TidyTracker Command Center",
     "custom_links": {
         "main": [
             {
@@ -145,6 +148,8 @@ JAZZMIN_SETTINGS = {
             }
         ]
     },
+
+    "custom_js": "js/admin_custom.js",  # JavaScript for admin view customizations
 
     # The Menu Icons (FontAwesome 5)
     "icons": {
