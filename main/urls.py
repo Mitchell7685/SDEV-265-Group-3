@@ -21,8 +21,10 @@ urlpatterns = [
     
     # User Complete Chore
     path('complete-chore/<int:assignment_id>/', views.complete_chore, name='complete_chore'),
-]
 
+    # Request Extension
     path('chore/<int:chore_id>/request-extension/', request_extension, name='request_extension'),
-    path('admin/manage-extensions/', manage_extensions, name='manage_extensions'),
-]    
+
+    # Manage Extensions
+    path('manage_extensions/', manage_extensions, name='manage_extensions'),
+]
