@@ -1,0 +1,55 @@
+{% extends 'layout.html' %}
+
+{% block title %}Manage Extension Requests{% endblock %}
+
+{% block content %}
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1>Extension Requests</h1>
+        <a href="{% url 'home' %}" class="btn btn-secondary">Back to Dashboard</a>
+    </div>
+
+    <div class="card shadow">
+        <div class="card-header bg-white">
+            <h4 class="mb-0">Pending Requests</h4>
+        </div>
+        <div class="list-group list-group-flush">
+            {% for request in pending_requests %}
+                <div class="list-group-item p-3">
+                    <div class="d-flex justify-content-between align-items-start">
+                        <div class="flex-grow-1">
+                            <h5 class="mb-1">{{ request.assigned_chore.chore_definition.chore_name }}</h5>
+                            <p class="mb-1">
+                                <strong>User:</strong> {{ request.requested_by.username }}<br>
+                                <strong>Current Due Date:</strong> {{ request.assigned_chore.date_due|date:"M d, Y g:i A" }}<br>
+                                <strong>Requested New Due Date:</strong> {{ request.requested_due_date|date:"M d, Y g:i A" }}<br>
+                                <strong>Requested:</strong> {{ request.requested_at|date:"M d, Y g:i A" }}
+                            </p>
+                            {% if request.reason %}
+                                <small class="text-muted"><em>{{ request.reason }}</em></small>
+                            {% endif %}
+                        </div>
+                        <div class="d-flex gap-2">
+                            <form method="post" class="mb-0">
+                                {% csrf_token %}
+                                <input type="hidden" name="request_id" value="{{ request.id }}">
+                                <input type="hidden" name="action" value="approve">
+                                <button type="submit" class="btn btn-success btn-sm">Approve</button>
+                            </form>
+                            <form method="post" class="mb-0">
+                                {% csrf_token %}
+                                <input type="hidden" name="request_id" value="{{ request.id }}">
+                                <input type="hidden" name="action" value="reject">
+                                <button type="submit" class="btn btn-danger btn-sm">Reject</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            {% empty %}
+                <div class="list-group-item text-center p-5 text-muted">
+                    <h5>No pending extension requests</h5>
+                    <p>All caught up!</p>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

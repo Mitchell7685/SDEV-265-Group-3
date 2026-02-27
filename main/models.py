@@ -4,6 +4,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save, post_migrate
 from django.dispatch import receiver
+from django.utils import timezone
 
 
 # ---------------- USER STATS ---------------------
@@ -134,4 +135,23 @@ def populate_chores(sender, **kwargs):
             print(f"CSV ERROR: Column {e} not found. Check your CSV headers match the model script.")
         except Exception as e:
             print(f"Error importing chores: {e}")
-            
+
+# ------------- Chore Extention Request -------------
+class ChoreExtensionRequest(models.Model):
+    STATUS_CHOICES = [
+        ('pending', 'Pending',),
+        ('approved', 'Approved'),
+        ('rejected', 'Rejected'),
+    ]
+
+    assigned_chore = models.ForeignKey(AssignedChore, on_delete=models.CASCADE, related_name='extension_requests')
+    requested_by = models.ForeignKey(User, on_delete=models.CASCADE)
+    requested_at = models.DateTimeField(auto_now_add=True)
+    reason = models.TextField(blank=True, null=True)
+    requested_due_date = models.DateTimeField(null=True, blank=True)  # Specific date/time user is requesting
+    status = models.CharField(max_length=10, choices=STATUS_CHOICES, default='pending')
+    reviewed_by = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True, related_name='reviewed_extensions')
+    reviewed_at = models.DateTimeField(null=True, blank=True)
+    
+    def __str__(self):
+        return f"Extension for {self.assigned_chore} by {self.requested_by.username}"

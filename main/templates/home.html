@@ -31,10 +31,29 @@
                 </div>
                 <ul class="list-group list-group-flush">
                     {% for task in chores %}
-                        <li class="list-group-item d-flex justify-content-between align-items-center p-3">
-                            <div>
-                                <h5 class="mb-1">{{ task.chore_definition.chore_name }}</h5>
-                                <small class="text-muted">Due: {{ task.date_due|default:"ASAP" }}</small>
+                        <li class="list-group-item p-3">
+                            <div class="d-flex justify-content-between align-items-start">
+                                <div class="flex-grow-1">
+                                    <h5 class="mb-1">{{ task.chore_definition.chore_name }}</h5>
+                                    <small class="text-muted">Due: {{ task.date_due|date:"M d, Y g:i A"|default:"ASAP" }}</small>
+                                    
+                                    {% if task.latest_extension %}
+                                        {% if task.latest_extension.status == 'pending' %}
+                                            <br><span class="badge bg-warning text-dark mt-1">Extension Pending ({{ task.latest_extension.requested_due_date|date:"M d, Y" }})</span>
+                                        {% elif task.latest_extension.status == 'approved' %}
+                                            <br><span class="badge bg-info text-white mt-1">Extension Approved ({{ task.latest_extension.requested_due_date|date:"M d, Y" }})</span>
+                                        {% endif %}
+                                    {% endif %}
+                                </div>
+                                <div class="d-flex gap-2 align-items-center">
+                                    <span class="badge bg-success rounded-pill p-2">+{{ task.points_value }} XP</span>
+                                    
+                                    {% if not task.has_pending_extension %}
+                                        <a href="{% url 'request_extension' task.id %}" class="btn btn-sm btn-outline-primary" title="Request extension">
+                                            <small>Request Extension</small>
+                                        </a>
+                                    {% endif %}
+                                </div>
                             </div>
                             
                             <div class="d-flex align-items-center gap-3">
