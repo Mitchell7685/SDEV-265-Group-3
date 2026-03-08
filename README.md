@@ -6,13 +6,15 @@
 
   <h3 align="center">SDEV265 Group 3 Project</h3>
 
+  [![User Dashboard][product-screenshot]](https://youtu.be/svkb4qhozA8?si=wdzLhXEhNaG18mME)
+
   <p align="center">
     A household chore application.
     <br />
     <a href="#about-the-project"><strong>Explore the docs »</strong></a>
     <br />
     <br />
-    <a href="https://youtube.com/">View Demo</a>
+    <a href="https://youtu.be/svkb4qhozA8?si=wdzLhXEhNaG18mME">View Demo</a>
     ·
     <a href="https://github.com/Mitchell7685/SDEV-265-Group-3/issues">Report Bug</a>
     ·
@@ -127,10 +129,12 @@ Once the server is running, you can access the default homepage.
 
 ## Roadmap
 - [x] Project Planning
-- [ ] Initial Project Setup
-- [ ] Virtual Environment Configuration
-- [ ] Base App Creation (`main`)
-- [ ] Create Database Models
+- [x] Initial Project Setup
+- [x] Virtual Environment Configuration
+- [x] Base App Creation (`main`)
+- [x] Create Database Models
+- [ ] Include Bootstrap dependencies
+- [ ] Implement Reward system
 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
@@ -138,11 +142,10 @@ Once the server is running, you can access the default homepage.
 ## Contact
 
 Team
-- Collin Congleton - [Collin's LinkedIn](https://www.linkedin.com/in/) - [Collin's GitHub](https://github.com/Satori15)
-- Jacob Lee - [Jacob's LinkedIn](https://www.linkedin.com/in/) - [Jacob's GitHub](https://github.com/)
-- Mitchell Kehler - [Mitchell's LinkedIn](https://www.linkedin.com/in/) - [Mitchell's GitHub](https://github.com/Mitchell7685)
+- Jacob Lee
+- Mitchell Kehler - [Mitchell's GitHub](https://github.com/Mitchell7685)
 - Stephen Littman - [Stephen's LinkedIn](https://www.linkedin.com/in/stephen-littman/) - [Stephen's GitHub](https://github.com/anarchking)
-- Yverson Louis - [Yverson's LinkedIn](https://www.linkedin.com/in/) - [Yverson's GitHub](https://github.com/)
+- Yverson Louis
 
 
 Project Link - [Repo Link](https://github.com/Mitchell7685/SDEV-265-Group-3/)
@@ -179,3 +182,5 @@ This is a list of some useful tools and resources used in the setup of this proj
 
 [Bootstrap.com]: https://img.shields.io/badge/Bootstrap-563D7C?style=for-the-badge&logo=bootstrap&logoColor=white
 [Bootstrap-url]: https://getbootstrap.compile
+
+[product-screenshot]: main/static/images/UserDashboard.png
